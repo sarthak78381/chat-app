@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles//styles.css">
+    <title>Chat App</title>
+</head>
+<body>
+    <div class="heading__container">
+        <h1>Chat App</h1>
+    </div>
+
+   <div class="container">
+       <div class="sideBar__container">
+           <div class="usersList__head"><h3>Users</h3></div>
+           <div class="usersList__body" id="userList__container"></div>
+       </div>
+       <div class="messages__parentContainer">
+            <div class="messages__container" id='messages__container'>
+                <div id="messages"></div>
+            </div>
+        
+            <div class="chatInput__container">
+                <form id='message-form' class="message__form">
+                    <input type="text" name='message'>
+                    <button type='submit'>Send</button>
+                    <button id='location-button' class="location__button">Share Location</button>
+                </form>
+            </div>
+       </div>
+   </div>
+    <script id='message-template' type="text/html">
+        <div class="message__container {{#userMessage}} userMessage__container {{/userMessage}}">
+            <p class="message__info">
+                <span class="message__user">{{userName}}</span> <span class="message__time">{{createdAt}}</span>
+            </p>
+            <div class="message">
+                <{{type}} {{#url}} href={{url}} target='_blank' {{/url}}>{{message}}</{{type}}>
+            </div>
+        </div>
+    </script>
+    <script id='sideBar-template' type="text/html">
+        <div class="userList__container">
+            <h4>{{userName}}</h4>
+        </div>
+    </script>
+    <script id='alert-template' type="text/html">
+        <div class="alertMessage__container">
+            <h4>{{message}}</h4>
+        </div>
+    </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+<script src='/socket.io/socket.io.js'></script>
+<script src='./js/chat.js'></script>
+</html>
